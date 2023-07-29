@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: medicure-mvn-container
-        image: niladrimondaldcr/medicure:1.0
+        image: nik848/medicure:1.0
         ports:
         - containerPort: 8082
 ---
