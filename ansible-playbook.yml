@@ -23,6 +23,13 @@
       owner: ubuntu
       group: ubuntu
       mode: u=rw,g=r,o=r
+      
+   - name: Install kubectl on the target host
+     become: true
+     apt:
+        name: kubectl
+        state: present
+   
    
   - name : run container
     command : kubectl apply -f /home/ubuntu/medicurelb.yml
