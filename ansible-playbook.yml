@@ -25,8 +25,8 @@
       mode: u=rw,g=r,o=r
       
   - name: Install kubectl on the target host
-     become: true
-     apt:
+    become: true
+    apt:
         name: kubectl
         state: present
    
