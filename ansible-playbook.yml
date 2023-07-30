@@ -23,8 +23,10 @@
       owner: ubuntu
       group: ubuntu
       mode: u=rw,g=r,o=r
-   
-  - name : run container
-    command : kubectl apply -f /home/ubuntu/medicurelb.yml
-    become : yes
-    become_user : ubuntu
+      
+  - name: Deploy Docker Container
+    command: docker run -itd -p 8084:8082 shubhamkushwah123/medicure:1.0
+  # - name : run container
+  #   command : kubectl apply -f /home/ubuntu/medicurelb.yml
+  #   become : yes
+  #   become_user : ubuntu
