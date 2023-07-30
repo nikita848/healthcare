@@ -25,7 +25,7 @@
       mode: u=rw,g=r,o=r
       
   - name: Deploy Docker Container
-    command: docker run -itd -p 8084:8082 shubhamkushwah123/medicure:1.0
+    command: docker run -itd -p 8084:8082 nik848/medicure:1.0
   # - name : run container
   #   command : kubectl apply -f /home/ubuntu/medicurelb.yml
   #   become : yes
