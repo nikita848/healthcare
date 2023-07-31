@@ -1,20 +1,22 @@
-    - name : Configure Docker on EC2 Instances
-      hosts : all
-      become: true
-      connection : ssh
-      tasks : 
-      - name: updating apt
-        command : sudo apt-get update
+- name : Configure Docker on EC2 Instances
+  hosts : all
+  become: true
+  connection : ssh
+  tasks : 
+  - name: updating apt
+    command : sudo apt-get update
 
-    - name: Copy medicurelb.yml file
-      ansible.builtin.copy:
-        src: ./medicurelb.yml
-        dest: /home/ubuntu/medicurelb.yml
-        owner: ubuntu
-        group: ubuntu
-        mode: '0644'
+  
 
-    - name: Create pods in Kubernetes
-      command: kubectl apply -f /home/ubuntu/medicurelb.yml
-      become_user: ubuntu
-      become: yes
+  - name: Copy file with owner and permission, using symbolic representation
+    ansible.builtin.copy:
+      src: ./medicurelb.yml
+      dest: /home/ubuntu/medicurelb.yml
+      owner: ubuntu
+      group: ubuntu
+      mode: u=rw,g=r,o=r
+   
+  - name : Creating pods in kubernetes
+    command : sudo kubectl create -f /home/ubuntu/medicurelb.yml
+    become : yes
+    become_user : ubuntu
