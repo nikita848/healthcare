@@ -6,27 +6,15 @@
   - name: updating apt
     command : sudo apt-get update
 
-  - name : Install Docker
-    command : sudo apt-get install -y docker.io
-    become : yes
-    become_user : root
-
-  - name : Start Docker Service
-    command : sudo systemctl start docker
-    become : yes
-    become_user : root
-
-  - name: Copy file with owner and permission, using symbolic representation
-    ansible.builtin.copy:
+- name: Copy file with owner and permission, using symbolic representation
+  ansible.builtin.copy:
       src: ./medicurelb.yml
       dest: /home/ubuntu/medicurelb.yml
       owner: ubuntu
       group: ubuntu
       mode: u=rw,g=r,o=r
-      
-  # - name: Deploy Docker Container
-  #   command: docker run -itd -p 8084:8082 nik848/medicure:1.0
-  - name : run container
-    command : sudo kubectl apply -f /home/ubuntu/medicurelb.yml
-    become : yes
-    become_user : ubuntu
+   
+- name : Creating pods in kubernetes
+  command : sudo kubectl create -f /home/ubuntu/medicurelb.yml
+  become : yes
+  become_user : ubuntu
