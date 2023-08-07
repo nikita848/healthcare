@@ -15,6 +15,9 @@
       owner: ubuntu
       group: ubuntu
       mode: u=rw,g=r,o=r
+
+  - name: Remove Previous deployment in Kubernetes
+    command: sudo kubectl delete -f /home/ubuntu/medicurelb.yml   
    
   - name : Creating pods in kubernetes
     command : sudo kubectl create -f /home/ubuntu/medicurelb.yml
